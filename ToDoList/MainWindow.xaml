@@ -1,0 +1,34 @@
+﻿<Window x:Class="ToDoList.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToDoList"
+        mc:Ignorable="d"
+         Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <ListView Name="taskListView" SelectionChanged="taskListView_SelectionChanged" Margin="-1,0,1,0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Название" Width="300" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Статус" Width="200" DisplayMemberBinding="{Binding Status}" />
+                    <GridViewColumn Header="Действия" Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Изменить статус" Click="ChangeStatus_Click" Tag="{Binding}" />
+                                    <Button Content="Удалить" Click="DeleteTask_Click" Tag="{Binding}" Margin="10 0 0 0" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="Добавить задачу" Click="AddTask_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,348,12" />
+    </Grid>
+</Window>
